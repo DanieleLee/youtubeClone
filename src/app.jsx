@@ -35,7 +35,7 @@ const App = (props) => {
     console.log(selectList);
   }
    useEffect(() => {
-    //  fetch("https://content-youtube.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&maxResults=25&key=AIzaSyDF2Ecn804F6c9Y9Pba-DWcxGPBDu02iqE")
+    //  fetch("https://content-youtube.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&maxResults=25&key=")
     //       .then((res) => res.json())
     //       .then((data) => {    
     //         setLists(data.items)
