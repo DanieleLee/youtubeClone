@@ -4,6 +4,7 @@ import Lists from './components/Lists';
 import ListCss from './styles/ListCss.css';
 import YoutubeData from './sample/youtube.json';
 import ListDetail from './components/ListDetail';
+import Search from './components/Search';
 
 // class App extends Component {
 
@@ -50,6 +51,11 @@ const App = (props) => {
   {
     return(
       <>
+        <div  className='search'>
+          <Search 
+            display= {selectList ? 'grid' : 'flex'}
+          />
+        </div>
         <div className='app'>
           {selectList &&(
               <ListDetail
