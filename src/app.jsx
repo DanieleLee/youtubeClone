@@ -56,6 +56,10 @@ const App = (props) => {
             display= {selectList ? 'grid' : 'flex'}
           />
         </div>
+        <div className='keyWSearch'>
+          <li>111</li>
+          <li>222</li>    
+        </div>
         <div className='app'>
           {selectList &&(
               <ListDetail

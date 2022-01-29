@@ -65,19 +65,35 @@ table, td, th{
 .search{
     display: flex;
     justify-content: center;
-    width: 1000px;
-    padding-left: 40px; 
     margin-top: 10px;
 }
 
 .search .grid{
-    width: 80%;
+    width: 77%;
     margin-left: 10px;
 }
 
 .search .flex{
-    width: 40%;
+    width: 75%;
     margin-left: 10px;
+}
+
+.searchU_flex{
+    width: 1000px;
+    display: flex;
+}
+
+.searchU_grid{
+    width: 100%;
+    display: flex;
+    padding-left: 66px;
+}
+
+.keyWSearch{
+    position: relative;
+    display: grid;
+    justify-content: center;
+    bottom: 10px;
 }
 
 iframe{
