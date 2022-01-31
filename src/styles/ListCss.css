@@ -57,12 +57,13 @@ table, td, th{
 }
 
 .app{
+    position: relative;
     display: flex;
     justify-content: space-around;
     margin-top: 10px;
 }
 
-.search{
+.search, .keyWSearch{
     display: flex;
     justify-content: center;
     margin-top: 10px;
@@ -89,11 +90,36 @@ table, td, th{
     padding-left: 66px;
 }
 
-.keyWSearch{
+.searchK_flex, .searchK_grid {
+    width: 750px;
+    display: flex;
+    align-items: center;
     position: relative;
-    display: grid;
-    justify-content: center;
+    /* flex-direction: column; */
+    /* position: absolute; */
+    margin-left: auto;
+    margin-right: auto;
+    left: 25px;
+    background: aliceblue;
+    z-index: 20000;
+}
+
+.searchK_grid{
+    width: 77%;
+}
+.keyWSearch{
+    display: block;
+    top: 68px;
     bottom: 10px;
+    position: absolute;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 200px;
+}
+
+.icon_search{
+    padding-left: 10px;
 }
 
 iframe{

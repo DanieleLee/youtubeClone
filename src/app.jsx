@@ -29,12 +29,30 @@ import Search from './components/Search';
 const App = (props) => {
   const [lists, setLists] = useState([]);
   const [selectList, setSelectList] = useState(null);
+  const [keyWord, setKeyWord] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const selectVideo = (video) => {
     setSelectList(video);
     console.log(selectList);
-  }
+  };
+
+  const inputKeyW =  (event) => {
+    var inputKeyW = event.currentTarget.value; 
+
+    if(inputKeyW == "")
+    {
+      setKeyWord(null);
+      return;
+    }
+
+    if(lists != undefined)
+    {
+      var filt_lists = lists.filter(l => l.snippet.title.toLowerCase().includes(inputKeyW));
+      setKeyWord(filt_lists);
+    }
+  };
+
    useEffect(() => {
     //  fetch("https://content-youtube.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&maxResults=25&key=")
     //       .then((res) => res.json())
@@ -54,12 +72,23 @@ const App = (props) => {
         <div  className='search'>
           <Search 
             display= {selectList ? 'grid' : 'flex'}
+            inputKeyW = {inputKeyW}
           />
         </div>
-        <div className='keyWSearch'>
-          <li>111</li>
-          <li>222</li>    
-        </div>
+        {keyWord &&(
+          <div className='keyWSearch'>
+            {keyWord.map((item, idx) => (
+              keyWord[idx].snippet &&(
+                <div className={`searchK_${selectList ? 'grid' : 'flex'}`}>
+                  <img src={keyWord[idx].snippet.thumbnails.default.url}></img>
+                  {keyWord[idx].snippet.title}
+                
+                </div> 
+              )
+            ))}      
+          </div>
+        )
+        }
         <div className='app'>
           {selectList &&(
               <ListDetail

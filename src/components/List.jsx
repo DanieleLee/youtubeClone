@@ -19,8 +19,8 @@ const List = memo (
                 <img src={img_src1}></img>
               </div>
               <div id='box2'>
-                {c_title_src1}
-                {title_src1}
+                <p>{title_src1}</p>
+                {c_title_src1}   
               </div>
             </li>
           </>
