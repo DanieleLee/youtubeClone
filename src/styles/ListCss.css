@@ -13,6 +13,7 @@ table, td, th{
 }
 
 #box1 {
+    cursor: pointer;
     float:left; 
     width:130px; 
     padding-left: 6px;
@@ -21,6 +22,7 @@ table, td, th{
 }
 #box2 {
     /* display:inline-block;  */
+    cursor: pointer;
     width:200px; 
     height:100px;
     margin-left:10px;
@@ -91,6 +93,7 @@ table, td, th{
 }
 
 .searchK_flex, .searchK_grid {
+    cursor: pointer;
     width: 750px;
     display: flex;
     align-items: center;

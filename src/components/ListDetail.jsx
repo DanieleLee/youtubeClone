@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component} from 'react';
 
 const ListDetail = (props) => {
 
     const video_url = "https://www.youtube.com/embed/" + props.list.id;
+
     return(
         <>
             <div className='ListDetail'>

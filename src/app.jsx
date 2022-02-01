@@ -1,4 +1,4 @@
-import { Component, useState ,useEffect} from 'react';
+import { Component, useState ,useEffect, useRef} from 'react';
 import './app.css';
 import Lists from './components/Lists';
 import ListCss from './styles/ListCss.css';
@@ -31,10 +31,11 @@ const App = (props) => {
   const [selectList, setSelectList] = useState(null);
   const [keyWord, setKeyWord] = useState([]);
   const [loading, setLoading] = useState(true);
+  
+  const inputKey = useRef(null);
 
   const selectVideo = (video) => {
     setSelectList(video);
-    console.log(selectList);
   };
 
   const inputKeyW =  (event) => {
@@ -53,6 +54,15 @@ const App = (props) => {
     }
   };
 
+  useEffect(() => {
+    return () => {
+      // setKeyWord(null);
+      // inputKeyW(null);
+      setKeyWord(null);
+      inputKey.current.value = null;
+    }
+  }, [selectList]);
+
    useEffect(() => {
     //  fetch("https://content-youtube.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&maxResults=25&key=")
     //       .then((res) => res.json())
@@ -60,8 +70,9 @@ const App = (props) => {
     //         setLists(data.items)
     //         setLoading(false)
     //       });
-    console.log('useEffect()loaded');
+    
     setLists(YoutubeData.items);
+    console.log('useEffect()loaded');
   });
 
   // if(loading) return <p>Loading....</p>
@@ -73,26 +84,30 @@ const App = (props) => {
           <Search 
             display= {selectList ? 'grid' : 'flex'}
             inputKeyW = {inputKeyW}
+            inputKey={inputKey}
+            selectList = {selectList ? 'grid' : 'flex'}
+            keyWord = {keyWord}
+            onListClick = {selectVideo}
           />
         </div>
-        {keyWord &&(
+        {/* {keyWord &&(
           <div className='keyWSearch'>
             {keyWord.map((item, idx) => (
               keyWord[idx].snippet &&(
-                <div className={`searchK_${selectList ? 'grid' : 'flex'}`}>
+                <div className={`searchK_${selectList ? 'grid' : 'flex'}`} >
                   <img src={keyWord[idx].snippet.thumbnails.default.url}></img>
-                  {keyWord[idx].snippet.title}
-                
+                  <p>{keyWord[idx].snippet.title}</p>          
                 </div> 
               )
             ))}      
           </div>
         )
-        }
+        } */}
         <div className='app'>
           {selectList &&(
               <ListDetail
                 list={selectList}
+                onListClick = {selectVideo}
               />
             )
           }
