@@ -2,25 +2,25 @@ import React, { Component, useState } from 'react';
 import List from './List';
 import App from '../app';
 
-
-const Lists = (props) => {
+const Lists = ({item, display, onListClick}) => {
         
     // if(loading) return <p>Loading....</p>
 
-    if(props.item == undefined)
+    if(item == undefined)
         return false;
-    // if(props.item[1] != undefined)
+    // if(item[1] != undefined)
     // {
         return(
             // <tr>
-            <ul className={`displayU_${props.display}`}>
-                {props.item.map((item,idx) => (
+            <ul className={`displayU_${display}`}>
+                {item.map((item,idx) => (
                     <List 
-                    // item1 = {props.item[0]}
-                    // item2 = {props.item[1]}
+                    // item1 = {item[0]}
+                    // item2 = {item[1]}
+                        key={item.id}
                         item = {item}
-                        onListClick = {props.onListClick}
-                        display = {props.display}
+                        onListClick = {onListClick}
+                        display = {display}
                     />
                 ))}
                 
@@ -34,9 +34,9 @@ const Lists = (props) => {
     //     return(
     //         <ul>
     //             <List 
-    //                 // item1 = {[props.item[0].snippet.title, props.item[0].snippet.channelTitle, props.item[0].snippet.thumbnails.default.url]}
-    //                 item1 = {props.item[0]}
-    //                 display = {props.display}
+    //                 // item1 = {[item[0].snippet.title, item[0].snippet.channelTitle, item[0].snippet.thumbnails.default.url]}
+    //                 item1 = {item[0]}
+    //                 display = {display}
     //             />
     //         </ul>           
     //     );
@@ -49,7 +49,7 @@ const Lists = (props) => {
 //             <div>
 //                 <ul>
 //                     <li>
-//                     {this.props.lists.map(list => (
+//                     {this.lists.map(list => (
 //                         <List key={list.id}
 //                             snippet={list.snippet}
                         

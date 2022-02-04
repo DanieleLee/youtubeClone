@@ -39,6 +39,17 @@ const App = (props) => {
   };
 
   const inputKeyW =  (event) => {
+    // const requestOptions = {
+    //   method: 'GET',
+    //   redirect: 'follow'
+    // };
+    
+    // fetch(`https://content-youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&type=video&q=${event}&key=`, requestOptions)
+    //   .then(response => response.json())
+    //   .then(result => result.items.map(item => ({...item, id: item.id.videoId})))
+    //   .then(items => console.log(setKeyWord(items)))
+    //   .catch(error => console.log('error', error));
+
     var inputKeyW = event.currentTarget.value; 
 
     if(inputKeyW == "")
@@ -89,6 +100,15 @@ const App = (props) => {
             keyWord = {keyWord}
             onListClick = {selectVideo}
           />
+          {/* <Search 
+            display= {selectList ? 'grid' : 'flex'}
+            inputKeyW = {inputKeyW}
+            inputKey={inputKey}
+            selectList = {selectList ? 'grid' : 'flex'}
+            keyWord = {keyWord}
+            onListClick = {selectVideo}
+            inputKeyW = {inputKeyW}
+          /> */}
         </div>
         {/* {keyWord &&(
           <div className='keyWSearch'>

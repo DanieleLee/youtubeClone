@@ -7,7 +7,13 @@ const Search = (props) => {
     const keyWord = props.keyWord;
     const onClick = useCallback((item) => {
         props.onListClick(item);
-      },[props.onListClick])
+      },[props.onListClick]);
+    
+    const handleSearch = () => {
+        console.log(props.inputKey.current.value);
+        // value = props.inputKey.current.value;
+        // props.inputKeyW(value);
+    }
     // const searchInput = useRef(null);
     // const onChange = useCallback(() => {
     //     searchInput.current.focus();
@@ -19,7 +25,9 @@ const Search = (props) => {
             <ul className={`searchU_${display}`}>
                 <img src='img/youtube-logo.png'></img>
                 <input type="text" className={`${display}`} onChange={props.inputKeyW} ref={props.inputKey}/>
-                <img src='img/search.png' className='icon_search'></img>         
+                <button type='submit' className='searchU_Bt' onClick={handleSearch}>
+                    <img src='img/search.png' className='icon_search'></img>
+                </button>              
             </ul>
 
             {keyWord &&(
