@@ -74,6 +74,9 @@ table, td, th{
 .ListDetail{
     width: 900px;
 }
+.ListDetail_iframe{
+    margin: 0;
+}
 
 .app{
     position: relative;
@@ -89,12 +92,12 @@ table, td, th{
 }
 
 .search .grid{
-    width: 77%;
+    width: 80%;
     margin-left: 10px;
 }
 
 .search .flex{
-    width: 75%;
+    width: 66%;
     margin-left: 10px;
 }
 

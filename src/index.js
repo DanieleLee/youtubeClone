@@ -3,12 +3,12 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './app';
 import reportWebVitals from './reportWebVitals';
-import Lists from './components/Lists';
+import Youtube from './services/youtube';
 
+const youtube = new Youtube(process.env.REACT_APP_YOUTUBE_API_KEY);
 ReactDOM.render(
   <React.StrictMode>
-    <App />
-    {/* <Lists></Lists> */}
+    <App youtube={youtube} />
   </React.StrictMode>,
   document.getElementById('root')
 );

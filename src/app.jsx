@@ -26,7 +26,7 @@ import Search from './components/Search';
   
 // }
 
-const App = (props) => {
+const App = ({ youtube }) => {
   const [lists, setLists] = useState([]);
   const [selectList, setSelectList] = useState(null);
   const [keyWord, setKeyWord] = useState([]);
@@ -48,7 +48,9 @@ const App = (props) => {
     //   .then(response => response.json())
     //   .then(result => result.items.map(item => ({...item, id: item.id.videoId})))
     //   .then(items => console.log(setKeyWord(items)))
-    //   .catch(error => console.log('error', error));
+    //   .catch(error => console.log('error', error)); ===> 이코드가 아래코드로 대체
+
+    // youtube.search(event).then(items => setKeyWord(items));
 
     var inputKeyW = event.currentTarget.value; 
 
