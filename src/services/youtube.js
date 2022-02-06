@@ -1,33 +1,44 @@
+import axios from "axios";
+
 class Youtube{
+    //*inject version
+    // constructor(httpClient){
+    //     this.youtube = httpClient;
+    // }
+
     constructor(key){
-        this.key = key;
-        this.getRequestOptions = {
-            method: 'GET',
-            redirect: 'follow'
-          };
-                       
+        this.youtube = axios.create({
+            baseURL: 'https://content-youtube.googleapis.com/youtube/v3',
+            params:{key: key}
+        })                   
     }
 
     async mostPopular(){
         try {
-            const response = await fetch(
-                "https://content-youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=squidgame&key=",
-                this.getRequestOptions
-            );
-            const result_1 = await response.json();
-            return result_1.items;
+            const response = await this.youtube.get('videos',{
+                params:{
+                    part: 'snippet',
+                    chart: 'mostPopular',
+                    maxResults:25
+                }
+            });
+            return await response.data.items;
         } catch (error) {
             return console.log('error', error);
         }
       }
 
-      async search(event){
+      async search(query){
         try {
-              const response = await fetch(
-                  `https://content-youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&type=video&q=${event}&key=`,
-                  this.getRequestOptions
-              );
-              const result_1 = await response.json();
+            const response = await this.youtube.get('videos',{
+                params:{
+                    part: 'snippet',
+                    chart: 'mostPopular',
+                    maxResults:25,
+                    q: query
+                }
+            });
+              const result_1 = await response.data.items;
               return result_1.items.map(item => ({ ...item, id: item.id.videoId }));
           } catch (error) {
               return console.log('error', error);

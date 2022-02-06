@@ -154,3 +154,14 @@ iframe{
     background-color: white;
     border-color: darkgray;
 }
+
+@media screen and (max-width: 48rem) {
+    .app{
+        flex-direction: column;
+    }
+    .displayU_flex{
+        display: flex;
+        width: fit-content;
+        flex-direction: column;
+    }
+}

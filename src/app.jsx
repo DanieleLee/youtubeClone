@@ -1,8 +1,7 @@
-import { Component, useState ,useEffect, useRef} from 'react';
+import { Component, useState ,useEffect, useRef, useCallback} from 'react';
 import './app.css';
 import Lists from './components/Lists';
 import ListCss from './styles/ListCss.css';
-import YoutubeData from './sample/youtube.json';
 import ListDetail from './components/ListDetail';
 import Search from './components/Search';
 
@@ -38,42 +37,45 @@ const App = ({ youtube }) => {
     setSelectList(video);
   };
 
-  const inputKeyW =  (event) => {
-    // const requestOptions = {
-    //   method: 'GET',
-    //   redirect: 'follow'
-    // };
-    
+  const search = useCallback(query => {
     // fetch(`https://content-youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&type=video&q=${event}&key=`, requestOptions)
     //   .then(response => response.json())
     //   .then(result => result.items.map(item => ({...item, id: item.id.videoId})))
     //   .then(items => console.log(setKeyWord(items)))
     //   .catch(error => console.log('error', error)); ===> 이코드가 아래코드로 대체
 
-    // youtube.search(event).then(items => setKeyWord(items));
+    // setSelectList(null);
+    // youtube.search(query).then(items => setSelectList(items));
+  },[])
 
-    var inputKeyW = event.currentTarget.value; 
+  const inputKeyW =  (event) => {
+      // const requestOptions = {
+      //   method: 'GET',
+      //   redirect: 'follow'
+      // };
+      
+      var inputKeyW = event.currentTarget.value; 
 
-    if(inputKeyW == "")
-    {
-      setKeyWord(null);
-      return;
-    }
+      if(inputKeyW == "")
+      {
+        setKeyWord(null);
+        return;
+      }
 
-    if(lists != undefined)
-    {
-      var filt_lists = lists.filter(l => l.snippet.title.toLowerCase().includes(inputKeyW));
-      setKeyWord(filt_lists);
-    }
-  };
+      if(lists != undefined)
+      {
+        var filt_lists = lists.filter(l => l.snippet.title.toLowerCase().includes(inputKeyW));
+        setKeyWord(filt_lists);
+      }
+  }
 
   useEffect(() => {
+
     return () => {
-      // setKeyWord(null);
-      // inputKeyW(null);
       setKeyWord(null);
       inputKey.current.value = null;
     }
+  
   }, [selectList]);
 
    useEffect(() => {
@@ -84,13 +86,11 @@ const App = ({ youtube }) => {
     //         setLoading(false)
     //       });
     
-    setLists(YoutubeData.items);
+    setLists(youtube.items);
     console.log('useEffect()loaded');
-  });
+  },[youtube]);
 
   // if(loading) return <p>Loading....</p>
-  if(lists != undefined)
-  {
     return(
       <>
         <div  className='search'>
@@ -142,9 +142,7 @@ const App = ({ youtube }) => {
         </div>
       </>
     );
-  }
   
-  // return {lists, loading};
 }
 
 export default App;

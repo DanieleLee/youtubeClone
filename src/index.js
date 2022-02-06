@@ -4,11 +4,19 @@ import './index.css';
 import App from './app';
 import reportWebVitals from './reportWebVitals';
 import Youtube from './services/youtube';
+import youtube_sample from './sample/youtube.json'
+import axios from 'axios';
+
+// youtube.js에서 injection으로 사용할경우
+const httpClient = axios.create({
+  baseURL: 'https://content-youtube.googleapis.com/youtube/v3',
+  params:{key: process.env.REACT_APP_YOUTUBE_API_KEY}
+})
 
 const youtube = new Youtube(process.env.REACT_APP_YOUTUBE_API_KEY);
 ReactDOM.render(
   <React.StrictMode>
-    <App youtube={youtube} />
+    <App youtube={youtube_sample} />
   </React.StrictMode>,
   document.getElementById('root')
 );

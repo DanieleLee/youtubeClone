@@ -12,9 +12,9 @@ const ListDetail = (props) => {
                     width="100%" 
                     height="315" 
                     src= {video_url}
-                    frameborder="0" 
+                    frameBorder="0" 
                     allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen />
+                    allowFullScreen />
             </ul> 
                 <ul>{props.list.snippet.title}</ul>
                 <ul>{props.list.snippet.channelTitle}</ul>
