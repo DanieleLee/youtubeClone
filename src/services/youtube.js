@@ -2,16 +2,24 @@ import axios from "axios";
 
 class Youtube{
     //*inject version
-    // constructor(httpClient){
-    //     this.youtube = httpClient;
+    constructor(httpClient){
+        this.youtube = httpClient;
+    }
+
+    // constructor(key){
+    //     this.youtube = axios.create({
+    //         baseURL: 'https://content-youtube.googleapis.com/youtube/v3',
+    //         params:{key: key}
+    //     })                   
     // }
 
-    constructor(key){
-        this.youtube = axios.create({
-            baseURL: 'https://content-youtube.googleapis.com/youtube/v3',
-            params:{key: key}
-        })                   
-    }
+    // async get(){
+    //     try{
+
+    //     }catch(error){
+    //         return console.log('error:', error);
+    //     }
+    // }
 
     async mostPopular(){
         try {
@@ -19,10 +27,10 @@ class Youtube{
                 params:{
                     part: 'snippet',
                     chart: 'mostPopular',
-                    maxResults:25
+                    maxResults:25,
                 }
             });
-            return await response.data.items;
+            return  response.data.items;
         } catch (error) {
             return console.log('error', error);
         }

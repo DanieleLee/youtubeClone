@@ -86,7 +86,12 @@ const App = ({ youtube }) => {
     //         setLoading(false)
     //       });
     
+    /* non Injection */
     setLists(youtube.items);
+    /* Injection */
+    // youtube
+    //   .mostPopular()
+    //   .then((videos) => setLists(videos))
     console.log('useEffect()loaded');
   },[youtube]);
 
@@ -98,7 +103,6 @@ const App = ({ youtube }) => {
             display= {selectList ? 'grid' : 'flex'}
             inputKeyW = {inputKeyW}
             inputKey={inputKey}
-            selectList = {selectList ? 'grid' : 'flex'}
             keyWord = {keyWord}
             onListClick = {selectVideo}
           />
