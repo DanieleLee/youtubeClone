@@ -10,17 +10,23 @@ const Search = memo(
             props.onListClick(item);
         },[props.onListClick]);
         
-        const handleSearch = () => {
-            console.log(props.inputKey.current.value);
+        const handleSearch = useCallback((item) => {
             // value = props.inputKey.current.value;
             // props.inputKeyW(value);
-        }
+            let param = {
+                value : props.inputKey.current.value,
+                mode : "search"
+            }
+
+            props.inputKeyW(param);
+    
+            console.log(props.inputKey.current.value);
+        })
         // const searchInput = useRef(null);
         // const onChange = useCallback(() => {
         //     searchInput.current.focus();
         //     console.log(searchInput.current.value);
         // },[searchInput]);
-        console.log('dp:' + display);
         return(
             <>
                 <ul className={`searchU_${display}`}>

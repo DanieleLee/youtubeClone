@@ -29,15 +29,17 @@ const App = ({ youtube }) => {
   const [lists, setLists] = useState([]);
   const [selectList, setSelectList] = useState(null);
   const [keyWord, setKeyWord] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [clickSearch, setClickSearch] = useState(false);
+  // const [loading, setLoading] = useState(true);
   
   const inputKey = useRef(null);
 
   const selectVideo = (video) => {
     setSelectList(video);
+    setLists(youtube.items);
   };
 
-  const search = useCallback(query => {
+  const search = useCallback((query) => {
     // fetch(`https://content-youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&type=video&q=${event}&key=`, requestOptions)
     //   .then(response => response.json())
     //   .then(result => result.items.map(item => ({...item, id: item.id.videoId})))
@@ -46,6 +48,9 @@ const App = ({ youtube }) => {
 
     // setSelectList(null);
     // youtube.search(query).then(items => setSelectList(items));
+
+    setSelectList(null);
+    console.log(lists.includes(query));
   },[])
 
   const inputKeyW =  (event) => {
@@ -54,9 +59,16 @@ const App = ({ youtube }) => {
       //   redirect: 'follow'
       // };
       
-      var inputKeyW = event.currentTarget.value; 
+      if(event.mode === "search"){
+        let filt_lists = lists.filter(l => l.snippet.title.toLowerCase().includes(event.value));
+        setLists(filt_lists);
+        setKeyWord(null);
+        return;
+      }
 
-      if(inputKeyW == "")
+      inputKey.current.value = event.currentTarget.value;
+
+      if(inputKey.current.value == "")
       {
         setKeyWord(null);
         return;
@@ -64,7 +76,7 @@ const App = ({ youtube }) => {
 
       if(lists != undefined)
       {
-        var filt_lists = lists.filter(l => l.snippet.title.toLowerCase().includes(inputKeyW));
+        let filt_lists = lists.filter(l => l.snippet.title.toLowerCase().includes(inputKey.current.value));
         setKeyWord(filt_lists);
       }
   }
@@ -105,6 +117,7 @@ const App = ({ youtube }) => {
             inputKey={inputKey}
             keyWord = {keyWord}
             onListClick = {selectVideo}
+            searchVideo = {search}
           />
           {/* <Search 
             display= {selectList ? 'grid' : 'flex'}
